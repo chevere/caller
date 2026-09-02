@@ -37,4 +37,18 @@ final class Caller implements CallerInterface
     {
         return $this->line;
     }
+
+    /**
+     * @param array{file?: string, line?: int} $array
+     */
+    public static function fromArray(array $array): self
+    {
+        /**
+         * @infection-ignore-all
+         */
+        return new self(
+            $array['file'] ?? '',
+            $array['line'] ?? 0
+        );
+    }
 }

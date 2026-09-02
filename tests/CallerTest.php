@@ -30,4 +30,15 @@ final class CallerTest extends TestCase
             $caller->__toString()
         );
     }
+
+    public function testFromArray(): void
+    {
+        $array = [
+            'file' => __FILE__,
+            'line' => __LINE__,
+        ];
+        $caller = Caller::fromArray($array);
+        $this->assertSame($array['file'], $caller->file());
+        $this->assertSame($array['line'], $caller->line());
+    }
 }
